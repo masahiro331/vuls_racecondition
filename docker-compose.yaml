@@ -1,0 +1,23 @@
+version: "2"
+services:
+  vuls:
+    image: vuls/vuls:0.8.2
+    ports:
+      - "5515:5515"
+    links:
+      - redis:redis
+    depends_on:
+      - "redis"
+      - "goval-redhat"
+    command: server -listen=0.0.0.0:5515 -ovaldb-type=redis -ovaldb-url=redis://redis:6379 -cvedb-type=redis -cvedb-url=redis://redis:6379
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  goval-redhat:
+    image: vuls/goval-dictionary
+    links:
+      - redis:redis
+    depends_on:
+      - "redis"
+    command: fetch-redhat -dbpath=redis://redis:6379 -dbtype=redis  6
