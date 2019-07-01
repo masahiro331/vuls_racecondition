@@ -34,3 +34,16 @@ Failed to get cves.
 $ cd vuls_racecondition
 $ python ubuntu.py
 ```
+
+
+## Other
+
+This issue also works like a specific DoS.
+
+For example, if you have not imported the oval information of amazon linux.
+
+```
+$ python amazon.py
+```
+
+By rewriting the normal request family, all vulnerability detection can be disabled.
