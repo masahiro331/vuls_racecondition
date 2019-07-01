@@ -21,3 +21,10 @@ services:
     depends_on:
       - "redis"
     command: fetch-redhat -dbpath=redis://redis:6379 -dbtype=redis  6
+  goval-redhat:
+    image: vuls/goval-dictionary
+    links:
+      - redis:redis
+    depends_on:
+      - "redis"
+    command: fetch-ubuntu -dbpath=redis://redis:6379 -dbtype=redis 16
